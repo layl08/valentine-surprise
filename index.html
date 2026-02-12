@@ -26,15 +26,54 @@ h1 {
 }
 
 button {
-    padding: 15px 25px;
+    padding: 16px 40px;
     font-size: 18px;
+    font-weight: 600;
+    letter-spacing: 1px;
     border: none;
-    border-radius: 30px;
-    background: white;
-    color: #ff4e8d;
+    border-radius: 50px;
+    background: linear-gradient(135deg, #ffffff, #ffe6f0);
+    color: #ff2e7a;
     cursor: pointer;
     margin-top: 30px;
-    transition: 0.3s;
+    transition: all 0.4s ease;
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2);
+    backdrop-filter: blur(10px);
+}
+
+button:hover {
+    transform: translateY(-5px) scale(1.05);
+    box-shadow: 0 15px 35px rgba(255, 0, 102, 0.4);
+    background: linear-gradient(135deg, #fff0f6, #ffffff);
+}
+
+button:active {
+    transform: scale(0.95);
+}
+}
+    button::before {
+    content: "";
+    position: absolute;
+    width: 300%;
+    height: 100%;
+    top: 0;
+    left: -100%;
+    background: linear-gradient(
+        120deg,
+        transparent,
+        rgba(255,255,255,0.6),
+        transparent
+    );
+    transition: all 0.6s;
+}
+
+button:hover::before {
+    left: 100%;
+}
+
+button {
+    position: relative;
+    overflow: hidden;
 }
 
 button:hover {
@@ -147,5 +186,6 @@ for (let i = 0; i < 20; i++) {
 
 </body>
 </html>
+
 
 
