@@ -88,6 +88,17 @@ button:hover {
     left: -10px;
     top: 0;
 }
+    .romantic-photo {
+    width: 260px;
+    border-radius: 25px;
+    box-shadow: 0 15px 35px rgba(0,0,0,0.4);
+    border: 4px solid white;
+    transition: 0.5s;
+}
+
+.romantic-photo:hover {
+    transform: scale(1.05);
+}
 
 @keyframes float {
     0% {
@@ -113,7 +124,7 @@ button:hover {
     <div id="surprise">
         <h2>You are my favorite person 💕</h2>
         <p>No matter where life takes us, I’m always thankful for you.</p>
-        <img src="andson.jpg" alt="Our Photo">
+        <img src="andson.jpg" alt="Our Photo" class="romantic-photo">
         <p>I love you my baby 💖</p>
     </div>
 </div>
@@ -136,4 +147,5 @@ for (let i = 0; i < 20; i++) {
 
 </body>
 </html>
+
 
