@@ -171,33 +171,28 @@ button:hover {
 .romantic-photo:hover {
     transform: scale(1.05);
 }
-/* Romantic Photo Wrapper */
-.photo-wrapper {
-    position: relative;
-    display: inline-block;
-    margin-top: 20px;
+/* Falling petals */
+.petal {
+    position: fixed;
+    top: -10px;
+    width: 15px;
+    height: 20px;
+    background: radial-gradient(circle at 30% 30%, #ffb6c1, #ff4e8d);
+    border-radius: 50% 50% 50% 50%;
+    opacity: 0.8;
+    pointer-events: none;
+    animation: fall linear forwards;
 }
 
-/* Bouquet background behind photo */
-.photo-wrapper::before {
-    content: "";
-    position: absolute;
-    width: 320px;
-    height: 320px;
-    background: url('bouquet.jpg') no-repeat center;
-    background-size: contain;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%) scale(0);
-    opacity: 0;
-    z-index: -1;
-    transition: all 0.8s ease;
-}
-
-/* When surprise is shown */
-#surprise.show .photo-wrapper::before {
-    transform: translate(-50%, -50%) scale(1);
-    opacity: 1;
+@keyframes fall {
+    0% {
+        transform: translateY(0) rotate(0deg);
+        opacity: 1;
+    }
+    100% {
+        transform: translateY(110vh) rotate(360deg);
+        opacity: 0;
+    }
 }
     
 @keyframes float {
@@ -238,10 +233,28 @@ button:hover {
 function showSurprise() {
     const surprise = document.getElementById("surprise");
     surprise.style.display = "block";
-    surprise.classList.add("show");
+
+    createPetals();
 }
 
-// Create floating hearts
+function createPetals() {
+    for (let i = 0; i < 25; i++) {
+        let petal = document.createElement("div");
+        petal.className = "petal";
+        petal.style.left = Math.random() * 100 + "vw";
+        petal.style.animationDuration = (Math.random() * 3 + 4) + "s";
+        petal.style.animationDelay = Math.random() * 2 + "s";
+
+        document.body.appendChild(petal);
+
+        // Remove after animation ends
+        setTimeout(() => {
+            petal.remove();
+        }, 7000);
+    }
+}
+
+// Floating hearts (unchanged)
 for (let i = 0; i < 20; i++) {
     let heart = document.createElement("div");
     heart.className = "heart";
@@ -254,6 +267,7 @@ for (let i = 0; i < 20; i++) {
 
 </body>
 </html>
+
 
 
 
