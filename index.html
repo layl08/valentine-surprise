@@ -111,64 +111,7 @@ button:hover {
 }
 
 
-    /* Bouquet container */
-#bouquet {
-    position: relative;
-    width: 150px;
-    height: 200px;
-    margin: 30px auto;
-    display: none;
-    animation: bouquetPop 1s ease forwards;
-}
-
-/* Flowers */
-.flower {
-    width: 60px;
-    height: 60px;
-    background: radial-gradient(circle, #ff4e8d, #ff2e7a);
-    border-radius: 50%;
-    position: absolute;
-    box-shadow: 0 5px 15px rgba(0,0,0,0.3);
-    animation: bloom 0.8s ease forwards;
-    transform: scale(0);
-}
-
-.f1 { left: 45px; top: 0; }
-.f2 { left: 10px; top: 30px; }
-.f3 { right: 10px; top: 30px; }
-
-/* Stem */
-.stem {
-    position: absolute;
-    width: 10px;
-    height: 120px;
-    background: #2ecc71;
-    bottom: 0;
-    left: 70px;
-    border-radius: 5px;
-}
-
-/* Ribbon */
-.ribbon {
-    position: absolute;
-    width: 50px;
-    height: 30px;
-    background: #ff2e7a;
-    bottom: 40px;
-    left: 50px;
-    border-radius: 20px;
-}
-
-/* Animations */
-@keyframes bouquetPop {
-    0% { transform: scale(0); opacity: 0; }
-    60% { transform: scale(1.2); }
-    100% { transform: scale(1); opacity: 1; }
-}
-
-@keyframes bloom {
-    to { transform: scale(1); }
-}
+ 
     
 #surprise {
     display: none;
@@ -228,7 +171,35 @@ button:hover {
 .romantic-photo:hover {
     transform: scale(1.05);
 }
+/* Romantic Photo Wrapper */
+.photo-wrapper {
+    position: relative;
+    display: inline-block;
+    margin-top: 20px;
+}
 
+/* Bouquet background behind photo */
+.photo-wrapper::before {
+    content: "";
+    position: absolute;
+    width: 320px;
+    height: 320px;
+    background: url('bouquet.png') no-repeat center;
+    background-size: contain;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%) scale(0);
+    opacity: 0;
+    z-index: -1;
+    transition: all 0.8s ease;
+}
+
+/* When surprise is shown */
+#surprise.show .photo-wrapper::before {
+    transform: translate(-50%, -50%) scale(1);
+    opacity: 1;
+}
+    
 @keyframes float {
     0% {
         bottom: -10%;
@@ -250,27 +221,24 @@ button:hover {
     <p>Baby, Paclick yung button 💌</p>
     <button onclick="showSurprise()">Unlock My Love</button>
 
-    <div id="bouquet">
-    <div class="flower f1"></div>
-    <div class="flower f2"></div>
-    <div class="flower f3"></div>
-    <div class="stem"></div>
-    <div class="ribbon"></div>
-</div>
+ 
 
     <div id="surprise">
         <h2>You are my favorite person 💕</h2>
         <p>“Thank you for staying with me through everything and for giving me the beautiful privilege of loving you.”<br>
         Mahal na mahal kita baby. Happy Valentine's Day. Mwaaa!</p>
-        <img src="andson.jpg" alt="Our Photo" class="romantic-photo">
+       <div class="photo-wrapper">
+    <img src="andson.jpg" alt="Our Photo" class="romantic-photo">
+</div>
         <p>I love you my baby 💖</p>
     </div>
 </div>
 
 <script>
 function showSurprise() {
-    document.getElementById("surprise").style.display = "block";
-    document.getElementById("bouquet").style.display = "block";
+    const surprise = document.getElementById("surprise");
+    surprise.style.display = "block";
+    surprise.classList.add("show");
 }
 
 // Create floating hearts
@@ -286,6 +254,7 @@ for (let i = 0; i < 20; i++) {
 
 </body>
 </html>
+
 
 
 
